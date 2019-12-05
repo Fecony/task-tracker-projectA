@@ -1,5 +1,6 @@
-import * as firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firebase-firestore';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,16 +14,27 @@ const config = {
 
 class Firebase {
   constructor() {
-    firebase.initializeApp(config);
+    app.initializeApp(config);
 
-    this.auth = firebase.auth;
-    // this.provider = new firebase.auth.GoogleAuthProvider();
+    /* Firebase APIs */
+    this.auth = app.auth;
+    this.db = app.firestore();
+
+    /* Google Provider */
+    this.googleProvider = new app.auth.GoogleAuthProvider();
   }
 
-  // Authorization API
-  signInWithGoogle = () =>
-    this.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  // *** Authorization APIs ***
+
+  signInWithGoogle = () => this.auth().signInWithPopup(this.googleProvider);
+
   signOut = () => this.auth().signOut();
+
+  // *** Users APIs *** EXAMPLE REQUESTS
+
+  user = uid => this.db.doc(`users/${uid}`);
+
+  users = () => this.db.collection('users');
 }
 
 export default Firebase;
