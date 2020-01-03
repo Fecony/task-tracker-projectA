@@ -2,7 +2,7 @@
 
 ## Description
 
-Task Tracking App created using React. With ❤️
+Task Tracking App created using React.
 
 ## Getting Started
 
