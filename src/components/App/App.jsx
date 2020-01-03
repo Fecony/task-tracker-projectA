@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import LandingPage from '../Landing';
-
 import * as ROUTES from '../../constants/routes';
-import HomePage from '../Home';
-import NotFoundPage from '../NotFoundPage';
-import AboutPage from '../About/index';
+
+import {
+  LandingPage,
+  AboutPage,
+  HomePage,
+  NotFoundPage
+} from '../../components';
 
 const App = () => (
   <BrowserRouter>
